@@ -1,0 +1,2135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="NRG Energy Solution: Centralised Solar Power System for Saibai Island - A sustainable renewable energy solution for Torres Strait communities">
+    <title>NRG Energy Solution: Saibai Island Renewable Energy Project</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+    <style>
+        /* ===== CSS VARIABLES ===== */
+        :root {
+            --primary-blue: #0A4B78;
+            --secondary-green: #2D8659;
+            --accent-teal: #00A8A8;
+            --background-white: #FFFFFF;
+            --background-light: #F5F7FA;
+            --text-dark: #2C3E50;
+            --text-light: #6B7280;
+            --border-color: #E5E7EB;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        /* ===== RESET & BASE STYLES ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            background-color: var(--background-white);
+        }
+
+        /* ===== TYPOGRAPHY ===== */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            color: var(--primary-blue);
+        }
+
+        h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 800;
+        }
+
+        h2 {
+            font-size: clamp(1.75rem, 4vw, 2.5rem);
+            margin-bottom: 2rem;
+        }
+
+        h3 {
+            font-size: clamp(1.25rem, 3vw, 1.75rem);
+            color: var(--secondary-green);
+        }
+
+        h4 {
+            font-size: 1.25rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        /* ===== NAVIGATION ===== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: var(--background-white);
+            box-shadow: var(--shadow);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-logo {
+            font-family: 'Inter', sans-serif;
+            font-weight: 800;
+            font-size: 1.25rem;
+            color: var(--primary-blue);
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 600;
+            transition: color 0.3s;
+            font-size: 0.95rem;
+        }
+
+        .nav-menu a:hover {
+            color: var(--accent-teal);
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary-blue);
+            cursor: pointer;
+        }
+
+        /* ===== SCROLL PROGRESS ===== */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-teal), var(--secondary-green));
+            z-index: 1001;
+            transition: width 0.1s;
+        }
+
+        /* ===== BACK TO TOP BUTTON ===== */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background: var(--primary-blue);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-lg);
+            transition: all 0.3s;
+            z-index: 999;
+        }
+
+        .back-to-top:hover {
+            background: var(--accent-teal);
+            transform: translateY(-5px);
+        }
+
+        .back-to-top.visible {
+            display: flex;
+        }
+
+        /* ===== SECTIONS ===== */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        section:nth-child(even) {
+            background-color: var(--background-light);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-teal), var(--secondary-green));
+            border-radius: 2px;
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            margin-top: 80px;
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, rgba(10, 75, 120, 0.75) 0%, rgba(45, 134, 89, 0.70) 100%),
+                        url('https://images.unsplash.com/photo-1509391366360-2e959784a276?w=1600&q=80') center/cover;
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(10, 75, 120, 0.60) 0%, rgba(45, 134, 89, 0.55) 100%);
+            z-index: 0;
+        }
+
+        .hero > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .hero-subtitle {
+            font-style: italic;
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            font-weight: 600;
+        }
+
+        .quick-facts {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem auto;
+            max-width: 900px;
+            text-align: left;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .quick-facts h3 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .quick-facts ul {
+            list-style: none;
+        }
+
+        .quick-facts li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .quick-facts li:last-child {
+            border-bottom: none;
+        }
+
+        .quick-facts strong {
+            color: var(--accent-teal);
+        }
+
+        /* ===== CALLOUT BOXES ===== */
+        .callout {
+            background: white;
+            border-left: 5px solid var(--accent-teal);
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+        }
+
+        .callout-primary {
+            border-left-color: var(--primary-blue);
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        .hero .callout-primary {
+            background: rgba(255, 255, 255, 0.95);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .hero .callout-primary h3 {
+            color: var(--primary-blue);
+        }
+
+        .hero .callout-primary p {
+            color: var(--text-dark);
+        }
+
+        .callout-success {
+            border-left-color: var(--secondary-green);
+            background: rgba(45, 134, 89, 0.05);
+        }
+
+        .callout h3 {
+            margin-top: 0;
+        }
+
+        /* ===== GRID LAYOUTS ===== */
+        .grid {
+            display: grid;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .grid-2 {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+
+        .grid-3 {
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        }
+
+        .grid-4 {
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+
+        /* ===== CARDS ===== */
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s, box-shadow 0.3s;
+            height: 100%;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            color: var(--accent-teal);
+            margin-bottom: 1rem;
+        }
+
+        .card h3 {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        .card h4 {
+            color: var(--secondary-green);
+            margin-bottom: 0.75rem;
+        }
+
+        /* ===== PROBLEM BOXES ===== */
+        .problem-box {
+            background: linear-gradient(135deg, rgba(10, 75, 120, 0.05) 0%, rgba(45, 134, 89, 0.05) 100%);
+            border-left: 5px solid var(--primary-blue);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+        }
+
+        .problem-box h4 {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        .problem-box .icon {
+            font-size: 1.5rem;
+        }
+
+        /* ===== STATISTICS ===== */
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .stat-box {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--accent-teal);
+            font-family: 'Inter', sans-serif;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-top: 0.5rem;
+        }
+
+        /* ===== COST SUMMARY BOX ===== */
+        .cost-summary {
+            background: linear-gradient(135deg, var(--secondary-green) 0%, var(--accent-teal) 100%);
+            color: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .cost-summary h3 {
+            color: white;
+            margin-bottom: 1.5rem;
+            font-size: 1.75rem;
+        }
+
+        .cost-summary .cost-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .cost-summary .cost-item:last-child {
+            border-bottom: none;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 2px solid white;
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+
+        /* ===== TABLES ===== */
+        .table-container {
+            overflow-x: auto;
+            margin: 2rem 0;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+
+        thead {
+            background: var(--primary-blue);
+            color: white;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th {
+            font-weight: 700;
+            font-family: 'Inter', sans-serif;
+        }
+
+        tbody tr:hover {
+            background: var(--background-light);
+        }
+
+        tbody tr:last-child td {
+            font-weight: 700;
+            background: rgba(45, 134, 89, 0.1);
+            color: var(--secondary-green);
+        }
+
+        /* ===== COMPARISON TABLE ===== */
+        .comparison-table {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .comparison-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+        }
+
+        .comparison-item h4 {
+            color: var(--primary-blue);
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .comparison-item .check {
+            color: var(--secondary-green);
+        }
+
+        .comparison-item .value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-teal);
+            margin: 0.5rem 0;
+        }
+
+        /* ===== TIMELINE ===== */
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: -2rem;
+            width: 2px;
+            background: var(--border-color);
+        }
+
+        .timeline-item:last-child::before {
+            display: none;
+        }
+
+        .timeline-number {
+            position: absolute;
+            left: -0.75rem;
+            top: 0;
+            width: 2.5rem;
+            height: 2.5rem;
+            background: var(--accent-teal);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .timeline-content {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+        }
+
+        .timeline-content h4 {
+            color: var(--primary-blue);
+            margin-bottom: 0.75rem;
+        }
+
+        /* ===== ACKNOWLEDGEMENT SECTION ===== */
+        .acknowledgement {
+            background: linear-gradient(rgba(10, 75, 120, 0.85), rgba(45, 134, 89, 0.85)),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%230A4B78" width="1200" height="600"/><path fill="%232D8659" opacity="0.3" d="M0 300 Q300 200 600 300 T1200 300 V600 H0 Z"/></svg>');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .acknowledgement p {
+            color: white;
+            max-width: 900px;
+            margin: 0 auto;
+            font-size: 1.15rem;
+            line-height: 1.8;
+        }
+
+        /* ===== ICON LIST ===== */
+        .icon-list {
+            list-style: none;
+            margin: 1rem 0;
+        }
+
+        .icon-list li {
+            padding: 0.75rem 0;
+            display: flex;
+            align-items: start;
+            gap: 1rem;
+        }
+
+        .icon-list i {
+            color: var(--accent-teal);
+            font-size: 1.25rem;
+            margin-top: 0.25rem;
+        }
+
+        /* ===== CHART CONTAINERS ===== */
+        .chart-container {
+            position: relative;
+            height: 400px;
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            margin: 2rem 0;
+        }
+
+        /* ===== REFERENCES ===== */
+        .references {
+            background: var(--background-white);
+        }
+
+        .reference-list {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .reference-item {
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border-color);
+            text-indent: -2rem;
+            padding-left: 2rem;
+        }
+
+        .reference-item:last-child {
+            border-bottom: none;
+        }
+
+        .reference-item a {
+            color: var(--accent-teal);
+            word-break: break-all;
+        }
+
+        /* ===== HIGHLIGHT TEXT ===== */
+        .highlight {
+            background: linear-gradient(120deg, rgba(0, 168, 168, 0.2) 0%, rgba(45, 134, 89, 0.2) 100%);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        /* ===== RESPONSIVE DESIGN ===== */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                gap: 0;
+                background: white;
+                padding: 1rem 0;
+                box-shadow: var(--shadow);
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .nav-menu li {
+                padding: 0.75rem 2rem;
+                border-bottom: 1px solid var(--border-color);
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            section {
+                padding: 3rem 1rem;
+            }
+
+            .hero {
+                padding: 3rem 1rem;
+            }
+
+            .grid-2, .grid-3, .grid-4 {
+                grid-template-columns: 1fr;
+            }
+
+            .stat-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .chart-container {
+                height: 300px;
+                padding: 1rem;
+            }
+
+            .quick-facts {
+                padding: 1.5rem;
+            }
+        }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        /* ===== UTILITY CLASSES ===== */
+        .text-center {
+            text-align: center;
+        }
+
+        .mt-2 {
+            margin-top: 2rem;
+        }
+
+        .mb-2 {
+            margin-bottom: 2rem;
+        }
+
+        .bold {
+            font-weight: 700;
+        }
+
+        .italic {
+            font-style: italic;
+        }
+
+        /* ===== FEATURE ICONS ===== */
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--accent-teal), var(--secondary-green));
+            color: white;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#home" class="nav-logo">NRG</a>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#acknowledgement">Acknowledgement</a></li>
+                <li><a href="#background">Background</a></li>
+                <li><a href="#problem">Problem & Criteria</a></li>
+                <li><a href="#solution">Our Solution</a></li>
+                <li><a href="#implementation">Implementation</a></li>
+                <li><a href="#cost">Cost Analysis</a></li>
+                <li><a href="#conclusion">Conclusion</a></li>
+                <li><a href="#references">References</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <h1>NRG Energy Solution: Centralised Solar Power System for Saibai Island</h1>
+        <p class="hero-subtitle">A sustainable, community-focused renewable energy solution addressing diesel dependency in remote Torres Strait communities</p>
+
+        <div class="quick-facts">
+            <h3>Quick Facts</h3>
+            <ul>
+                <li><strong>Design Area:</strong> 4.1 Clean, affordable energy for small coastal urban environments</li>
+                <li><strong>Project Team:</strong> Yusuf Bharoocha, Nicholas Limpiado, Jinchul Park, Saumya Pindoriya, Sean Woods</li>
+            </ul>
+        </div>
+
+        <div class="callout callout-primary">
+            <h3>Proposal Summary</h3>
+            <p>This project addresses Saibai Island's critical energy challenges by replacing diesel-dependent power generation with a centralised solar farm and battery storage system. The solution achieves <span class="highlight">$172,780 annual savings</span>, eliminates <span class="highlight">500 tonnes of CO₂ emissions yearly</span>, and creates local employment opportunities.</p>
+        </div>
+    </section>
+
+    <!-- Executive Summary Section -->
+    <section id="executive-summary">
+        <h2 class="section-title">Executive Summary</h2>
+
+        <h3>Overview of Design</h3>
+        <ul class="icon-list">
+            <li><i class="fas fa-solar-panel"></i> <span>82 x 6.6kW solar systems providing ~400kW total capacity</span></li>
+            <li><i class="fas fa-bolt"></i> <span>Generates ~2200kWh daily to meet island's full energy demand</span></li>
+            <li><i class="fas fa-battery-full"></i> <span>Containerized Battery Energy Storage System (BESS) with 500kWh+ capacity</span></li>
+            <li><i class="fas fa-shield-alt"></i> <span>Marine-grade, cyclone-rated materials for harsh coastal environment</span></li>
+            <li><i class="fas fa-map-marker-alt"></i> <span>Single centralised location (OT1 site) for efficient maintenance</span></li>
+            <li><i class="fas fa-home"></i> <span>Serves 77 households (340 residents)</span></li>
+            <li><i class="fas fa-gas-pump"></i> <span>Diesel generators retained as backup</span></li>
+        </ul>
+
+        <h3 class="mt-2">Key Considerations</h3>
+        <div class="grid grid-3">
+            <div class="card">
+                <div class="feature-icon"><i class="fas fa-ship"></i></div>
+                <h4>Transport</h4>
+                <p>Materials transported via Sea Swift barge from mainland Queensland</p>
+            </div>
+            <div class="card">
+                <div class="feature-icon"><i class="fas fa-wrench"></i></div>
+                <h4>Maintenance</h4>
+                <p>Single maintenance location reduces costs vs. 77 scattered systems</p>
+            </div>
+            <div class="card">
+                <div class="feature-icon"><i class="fas fa-water"></i></div>
+                <h4>Protection</h4>
+                <p>Elevated installation protects from flooding and king tides</p>
+            </div>
+            <div class="card">
+                <div class="feature-icon"><i class="fas fa-users"></i></div>
+                <h4>Training</h4>
+                <p>Community training programs for local technicians</p>
+            </div>
+            <div class="card">
+                <div class="feature-icon"><i class="fas fa-calendar-alt"></i></div>
+                <h4>Timeline</h4>
+                <p>Implementation: 6-phase approach over 12-18 months</p>
+            </div>
+            <div class="card">
+                <div class="feature-icon"><i class="fas fa-expand-arrows-alt"></i></div>
+                <h4>Scalability</h4>
+                <p>Scalable model for other Torres Strait islands</p>
+            </div>
+        </div>
+
+        <div class="cost-summary">
+            <h3>Cost Summary</h3>
+            <div class="cost-item">
+                <span>Solar Systems (82 x 6.6kW)</span>
+                <span>$328,000</span>
+            </div>
+            <div class="cost-item">
+                <span>Battery Storage (Containerized BESS)</span>
+                <span>$180,000</span>
+            </div>
+            <div class="cost-item">
+                <span>Inverter</span>
+                <span>$44,000</span>
+            </div>
+            <div class="cost-item">
+                <span>Transformer</span>
+                <span>$18,000</span>
+            </div>
+            <div class="cost-item">
+                <span>Shipping (Sea Swift)</span>
+                <span>$65,000</span>
+            </div>
+            <div class="cost-item">
+                <span>Installation & Labour</span>
+                <span>$300,000</span>
+            </div>
+            <div class="cost-item">
+                <span><strong>Total Cost</strong></span>
+                <span><strong>$935,000 AUD</strong></span>
+            </div>
+        </div>
+
+        <div class="stat-grid">
+            <div class="stat-box">
+                <div class="stat-number">$172,780</div>
+                <div class="stat-label">Annual Savings</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">4¢</div>
+                <div class="stat-label">Cost per kWh (vs 30¢ diesel)</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">5.4</div>
+                <div class="stat-label">Years to Payback</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">500</div>
+                <div class="stat-label">Tonnes CO₂ Eliminated Annually</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Acknowledgement Section -->
+    <section class="acknowledgement" id="acknowledgement">
+        <h2 style="color: white;">Acknowledgement of Country</h2>
+        <p>We acknowledge the Traditional Owners of the land on which we gather. We pay respect to the people of Saibai Island, the Saibai people, as the Traditional Custodians of their land and sea country. We recognise their continuing connection to land, waters, and culture, and pay our respects to Elders past and present, and to the emerging leaders of Torres Strait communities. We commit to working in genuine partnership with the community to ensure this project respects and supports their ongoing custodianship of Country.</p>
+    </section>
+
+    <!-- Background Section -->
+    <section id="background">
+        <h2 class="section-title">Project Background</h2>
+
+        <h3>Introduction</h3>
+        <p>Saibai Island faces an urgent energy crisis. Located just 4km from Papua New Guinea and 150km north of mainland Australia, this low-lying Torres Strait island community of 340 people relies almost entirely on diesel generators for power—a situation that is economically unsustainable, environmentally destructive, and culturally at odds with the community's values as custodians of their land and sea.</p>
+
+        <h3 class="mt-2">Saibai Island Context</h3>
+        <div class="grid grid-4">
+            <div class="card">
+                <div class="card-icon"><i class="fas fa-map-marked-alt"></i></div>
+                <h4>Location</h4>
+                <p>115km² low-lying mud island, highest point only 1.7m above sea level</p>
+            </div>
+            <div class="card">
+                <div class="card-icon"><i class="fas fa-users"></i></div>
+                <h4>Population</h4>
+                <p>340 residents in 77 households</p>
+            </div>
+            <div class="card">
+                <div class="card-icon"><i class="fas fa-bolt"></i></div>
+                <h4>Energy Demand</h4>
+                <p>~2000kWh daily consumption</p>
+            </div>
+            <div class="card">
+                <div class="card-icon"><i class="fas fa-gas-pump"></i></div>
+                <h4>Current Source</h4>
+                <p>95% diesel generation</p>
+            </div>
+        </div>
+
+        <div class="chart-container">
+            <canvas id="currentEnergyChart"></canvas>
+        </div>
+
+        <h3 class="mt-2">The Diesel Problem</h3>
+
+        <div class="problem-box">
+            <h4><span class="icon">💰</span> Financial Burden</h4>
+            <ul>
+                <li>Diesel cost: $3.70/L (vs ~$1.80/L mainland)</li>
+                <li>150km sea transport via barge drives costs</li>
+                <li>Current energy cost: 30 cents/kWh</li>
+                <li>Annual expenditure unsustainable for community budget</li>
+            </ul>
+        </div>
+
+        <div class="problem-box">
+            <h4><span class="icon">⚠️</span> Supply Vulnerability</h4>
+            <ul>
+                <li>Monsoon seasons (Nov-April) disrupt barge deliveries</li>
+                <li>Weather delays can leave community without backup fuel</li>
+                <li>Power station and fuel station vulnerable to extreme weather</li>
+                <li>Critical infrastructure depends on unreliable supply chain</li>
+            </ul>
+        </div>
+
+        <div class="problem-box">
+            <h4><span class="icon">🔧</span> Maintenance Crisis</h4>
+            <ul>
+                <li>Salt corrosion destroys diesel equipment rapidly</li>
+                <li>No qualified diesel technicians on island</li>
+                <li>Repairs require expensive mainland callouts</li>
+                <li>Frequent breakdowns and power cuts</li>
+            </ul>
+        </div>
+
+        <div class="problem-box">
+            <h4><span class="icon">🌿</span> Environmental Impact</h4>
+            <ul>
+                <li>~500 tonnes CO₂ emissions annually</li>
+                <li>Diesel fumes affect community health and quality of life</li>
+                <li>Noise pollution from generators</li>
+                <li>Fossil fuel dependency conflicts with cultural values and climate reality</li>
+            </ul>
+        </div>
+
+        <h3 class="mt-2">The Economic Reality</h3>
+
+        <div class="callout">
+            <h4>Torres Strait Island Regional Council (TSIRC) Budget:</h4>
+            <ul class="icon-list">
+                <li><i class="fas fa-arrow-up"></i> <span>Operating Revenue: $81 million</span></li>
+                <li><i class="fas fa-arrow-down"></i> <span>Operating Expenses: $141 million</span></li>
+                <li><i class="fas fa-exclamation-triangle"></i> <span><strong>Annual Deficit: $60 million</strong></span></li>
+                <li><i class="fas fa-hand-holding-usd"></i> <span>53.81% of income from government grants</span></li>
+            </ul>
+            <p class="mt-2"><em>Council must prioritize essential services (health, education) over energy infrastructure</em></p>
+        </div>
+
+        <div class="chart-container">
+            <canvas id="budgetChart"></canvas>
+        </div>
+
+        <div class="callout callout-primary">
+            <p class="bold">With TSIRC operating at such a significant deficit, any energy solution must demonstrably reduce the financial burden while delivering long-term value to the community.</p>
+        </div>
+
+        <h3 class="mt-2">Logistical Challenges</h3>
+
+        <div class="callout">
+            <h4>Why Not Air Freight?</h4>
+            <ul>
+                <li>Only transports perishable items</li>
+                <li>Less cost-effective than barge</li>
+                <li>Aerodrome lacks consistent communications</li>
+                <li>Extreme weather causes delays</li>
+            </ul>
+            <p class="mt-2"><strong>Solution:</strong> Sea Swift barge service provides reliable, cost-effective transport for large equipment from mainland Queensland.</p>
+        </div>
+    </section>
+
+    <!-- Problem Definition & Design Scope Section -->
+    <section id="problem">
+        <h2 class="section-title">Problem Definition & Design Scope</h2>
+
+        <div class="callout callout-primary text-center">
+            <h3>User Needs Statement</h3>
+            <p class="bold" style="font-size: 1.25rem;">"How can we help the local government improve their renewable energy (low cost) sector on the island?"</p>
+        </div>
+
+        <h3>Design Philosophy: Designing WITH Community, Not FOR Them</h3>
+
+        <div class="grid grid-2">
+            <div class="card">
+                <h4>Community-Led Partnership</h4>
+                <ul>
+                    <li>'Nothing about Us, Without Us'</li>
+                    <li>Community members as essential partners, not users</li>
+                    <li>Prioritizing community voices and needs</li>
+                    <li>Integrating cultural knowledge into design</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h4>Sustainable Local Outcomes</h4>
+                <ul>
+                    <li>Early and ongoing consultation</li>
+                    <li>Local training and employment opportunities</li>
+                    <li>Locally maintainable systems</li>
+                    <li>Design accessible to everyone in community</li>
+                </ul>
+            </div>
+        </div>
+
+        <h3 class="mt-2">Design Criteria</h3>
+
+        <div class="card">
+            <div class="card-icon"><i class="fas fa-chart-line"></i></div>
+            <h3>Economically Viable</h3>
+            <h4>Description</h4>
+            <p>The solution must provide long-term cost savings compared to diesel generation while remaining within feasible implementation budgets for TSIRC. This includes capital costs, operational expenses, and maintenance over 25+ year lifespan.</p>
+            <h4>Justification</h4>
+            <p>With TSIRC operating at $60M annual deficit, any energy solution must reduce financial burden while delivering community value. Current diesel costs are unsustainable.</p>
+            <h4>Community Impact</h4>
+            <p>Lower energy costs mean more council resources available for essential services like healthcare, education, and infrastructure.</p>
+        </div>
+
+        <div class="card">
+            <div class="card-icon"><i class="fas fa-shield-alt"></i></div>
+            <h3>Reliable</h3>
+            <h4>Description</h4>
+            <p>System must provide consistent 24/7 power despite challenging environmental conditions including monsoons, king tides, salt spray, and cyclones. Must include adequate battery storage and backup systems.</p>
+            <h4>Justification</h4>
+            <p>Community wellbeing depends on uninterrupted power for refrigeration, medical equipment, water pumping, communications, and daily living. Current diesel system's supply vulnerability is unacceptable.</p>
+            <h4>Community Impact</h4>
+            <p>Families can rely on consistent power for food storage, children's education (lighting for homework), and critical health needs without fear of outages.</p>
+        </div>
+
+        <div class="card">
+            <div class="card-icon"><i class="fas fa-leaf"></i></div>
+            <h3>Environmentally Sustainable</h3>
+            <h4>Description</h4>
+            <p>Solution must minimize carbon emissions, reduce fossil fuel dependency, and align with Torres Strait Islander values of environmental stewardship. Should help community adapt to climate change impacts.</p>
+            <h4>Justification</h4>
+            <p>Saibai Island faces existential threats from sea level rise due to climate change. The community has been clear: they want solutions that protect their homeland, not contribute to its destruction.</p>
+            <h4>Community Impact</h4>
+            <p>Eliminating 500 tonnes annual CO₂ emissions demonstrates community leadership in climate action and reduces local air and noise pollution affecting daily life.</p>
+        </div>
+
+        <div class="card">
+            <div class="card-icon"><i class="fas fa-tools"></i></div>
+            <h3>Maintainable</h3>
+            <h4>Description</h4>
+            <p>System must be serviceable by locally trained technicians without requiring specialized mainland expertise for routine operations. Spare parts should be accessible and maintenance procedures straightforward.</p>
+            <h4>Justification</h4>
+            <p>Remote location makes mainland technician callouts expensive (travel, accommodation) and time-consuming. Community needs ability to manage their own infrastructure.</p>
+            <h4>Community Impact</h4>
+            <p>Creates local employment opportunities, builds community capacity, ensures rapid response to any issues without waiting for external help.</p>
+        </div>
+
+        <div class="card">
+            <div class="card-icon"><i class="fas fa-globe"></i></div>
+            <h3>Accessible and Scalable</h3>
+            <h4>Description</h4>
+            <p>Solution must be implementable using available transport infrastructure (barge delivery) and scalable to other Torres Strait islands with similar challenges. Technology should be proven and widely supported.</p>
+            <h4>Justification</h4>
+            <p>Saibai's success can become model for 15+ other remote Torres Strait communities facing identical energy challenges. Solutions must work within existing logistics constraints.</p>
+            <h4>Community Impact</h4>
+            <p>Demonstrates feasible pathway for entire Torres Strait region to achieve energy independence, with Saibai residents potentially training technicians from neighboring islands.</p>
+        </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section id="solution">
+        <h2 class="section-title">Our Solution</h2>
+
+        <div class="callout callout-success text-center">
+            <h3>Centralised Solar + Battery + Grid Integration</h3>
+            <p>A comprehensive renewable energy system designed specifically for Saibai Island's unique challenges</p>
+        </div>
+
+        <h3>Technical Specifications</h3>
+
+        <div class="grid grid-3">
+            <div class="card">
+                <div class="card-icon"><i class="fas fa-solar-panel"></i></div>
+                <h4>☀️ Solar Array</h4>
+                <ul>
+                    <li><strong>Size:</strong> 82 x 6.6kW systems = ~400kW total capacity (ground-mounted)</li>
+                    <li><strong>Power Generation:</strong> ~2200kWh per day to meet full island demand</li>
+                    <li><strong>Technology:</strong> High-efficiency monocrystalline panels (best for marine environments)</li>
+                    <li><strong>Sunlight:</strong> ~5.5 hours average daily sunlight powers the island</li>
+                    <li><strong>Installation:</strong> Marine-grade, corrosion-resistant materials</li>
+                    <li><strong>Resilience:</strong> Cyclone-rated mounting systems for extreme weather protection</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <div class="card-icon"><i class="fas fa-battery-full"></i></div>
+                <h4>🔋 Battery Storage (BESS)</h4>
+                <ul>
+                    <li><strong>Type:</strong> Centralised, Containerized Battery Energy Storage System</li>
+                    <li><strong>Capacity:</strong> 500kWh+ (sized for full overnight power supply)</li>
+                    <li><strong>Purpose:</strong> 24/7 power availability + 2-3 days backup during extended cloud cover</li>
+                    <li><strong>Technology:</strong> Lithium-ion, containerized for easy barge transport and installation</li>
+                    <li><strong>Benefit:</strong> Eliminates need for diesel generators except in extreme emergencies</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <div class="card-icon"><i class="fas fa-plug"></i></div>
+                <h4>⚡ Grid Integration</h4>
+                <ul>
+                    <li><strong>Connection:</strong> Direct integration with Saibai's existing 3-phase electrical infrastructure</li>
+                    <li><strong>Role:</strong> Solar/battery provides primary power; diesel generators remain as backup only</li>
+                    <li><strong>System:</strong> Inverter and transformer manage power conversion and distribution</li>
+                    <li><strong>Benefit:</strong> Utilizes existing distribution network—no need to rewire 77 households</li>
+                </ul>
+            </div>
+        </div>
+
+        <h3 class="mt-2">Why Centralised vs. Individual Systems?</h3>
+
+        <div class="comparison-table">
+            <div class="comparison-item">
+                <h4><i class="fas fa-dollar-sign check"></i> Financial Savings</h4>
+                <p>Centralised: <span class="value">$935,000</span></p>
+                <p>Individual (77 systems): $2.35M</p>
+                <p class="bold" style="color: var(--secondary-green);">Savings: $1.415M (60% cost reduction)</p>
+            </div>
+
+            <div class="comparison-item">
+                <h4><i class="fas fa-wrench check"></i> Maintenance</h4>
+                <p><strong>Centralised:</strong> Single location, one technician</p>
+                <p><strong>Individual:</strong> 77 scattered sites across island</p>
+            </div>
+
+            <div class="comparison-item">
+                <h4><i class="fas fa-check-circle check"></i> Reliability</h4>
+                <p><strong>Centralised:</strong> Consistent monitoring, elevated above flood zones</p>
+                <p><strong>Individual:</strong> 77 potential failure points, many in flood-prone areas</p>
+            </div>
+
+            <div class="comparison-item">
+                <h4><i class="fas fa-users check"></i> Community</h4>
+                <p><strong>Centralised:</strong> Shared resource, local employment</p>
+                <p><strong>Individual:</strong> Complex coordination across 77 households</p>
+            </div>
+        </div>
+
+        <div class="chart-container">
+            <canvas id="comparisonChart"></canvas>
+        </div>
+    </section>
+
+    <!-- Implementation Section -->
+    <section id="implementation">
+        <h2 class="section-title">Implementation</h2>
+
+        <h3>Transport & Logistics</h3>
+
+        <div class="callout">
+            <h4>Sea Swift Barge Service</h4>
+            <ul class="icon-list">
+                <li><i class="fas fa-box"></i> <span>Containerized BESS specifically designed for barge transport</span></li>
+                <li><i class="fas fa-route"></i> <span>Regular freight service from mainland Queensland to Saibai Island</span></li>
+                <li><i class="fas fa-anchor"></i> <span>Established route and infrastructure</span></li>
+                <li><i class="fas fa-dollar-sign"></i> <span>Cost-effective for large equipment (included in $65,000 shipping estimate)</span></li>
+            </ul>
+        </div>
+
+        <h3 class="mt-2">Site Selection: OT1 Investigation Area</h3>
+
+        <div class="grid grid-2">
+            <div class="card">
+                <h4>✅ Better Protected from Inundation</h4>
+                <p>Elevated above regular king tide flooding</p>
+                <p>2.4 hectares of existing unused land</p>
+            </div>
+
+            <div class="card">
+                <h4>✅ Shorter Travel Distance</h4>
+                <p>Closer to power station than fuel station</p>
+                <p>Easier cable runs to existing grid infrastructure</p>
+            </div>
+
+            <div class="card">
+                <h4>✅ Dedicated Space</h4>
+                <p>Large enough for 82 solar systems + BESS + management building</p>
+                <p>Adjacent to airstrip but compatible with constraints</p>
+                <p>Long-term zoned for infrastructure use</p>
+            </div>
+
+            <div class="card">
+                <h4>Location Details</h4>
+                <p>Lot 6 on SP248241 (see Saibai Island Master Plan)</p>
+                <p>Currently located in Environmental Management and Conservation Zone</p>
+                <p>Planning Scheme amendment required once land use identified</p>
+            </div>
+        </div>
+
+        <h3 class="mt-2">Implementation Process</h3>
+        <p class="text-center bold">Estimated Timeline: 12-18 months from approval to full operation</p>
+
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-number">01</div>
+                <div class="timeline-content">
+                    <h4>Community Consultation</h4>
+                    <ul>
+                        <li>Speak with local community members and elders</li>
+                        <li>Incorporate cultural knowledge and community priorities</li>
+                        <li>Address any concerns about site location or design</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-number">02</div>
+                <div class="timeline-content">
+                    <h4>Communicate with TSIRC</h4>
+                    <ul>
+                        <li>Formal approval and partnership agreement</li>
+                        <li>Budget allocation and grant applications</li>
+                        <li>Timeline coordination with other island projects</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-number">03</div>
+                <div class="timeline-content">
+                    <h4>Plan Infrastructure</h4>
+                    <ul>
+                        <li>Detailed site surveys and soil testing</li>
+                        <li>Environmental impact assessment</li>
+                        <li>Engineering specifications finalized</li>
+                        <li>Planning Scheme amendment application</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-number">04</div>
+                <div class="timeline-content">
+                    <h4>Develop Grid at OT1</h4>
+                    <ul>
+                        <li>Site preparation and foundation work</li>
+                        <li>Solar array installation (82 systems)</li>
+                        <li>BESS container placement</li>
+                        <li>Inverter and transformer installation</li>
+                        <li>Cable runs to existing power station</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-number">05</div>
+                <div class="timeline-content">
+                    <h4>Test Grid Reliability</h4>
+                    <ul>
+                        <li>System commissioning and testing</li>
+                        <li>Load balancing across 77 households</li>
+                        <li>Battery charge/discharge cycle validation</li>
+                        <li>Integration with diesel backup systems</li>
+                        <li>Safety and compliance certification</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-number">06</div>
+                <div class="timeline-content">
+                    <h4>Ongoing Maintenance</h4>
+                    <ul>
+                        <li>Community technician training</li>
+                        <li>Routine inspection schedule (panel cleaning, battery monitoring)</li>
+                        <li>Spare parts inventory management</li>
+                        <li>Performance monitoring and optimization</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <h3 class="mt-2">Site Layout</h3>
+
+        <div class="callout callout-success">
+            <h4>Proposed Design Features</h4>
+            <ul class="icon-list">
+                <li><i class="fas fa-solar-panel"></i> <span><strong>Solar Power Systems:</strong> Ground-mounted arrays covering majority of 2.4-hectare site</span></li>
+                <li><i class="fas fa-building"></i> <span><strong>Central Infrastructure Hub:</strong> Inverter, transformer, and battery (BESS) containers</span></li>
+                <li><i class="fas fa-warehouse"></i> <span><strong>Management Building:</strong> Small operations building for local technicians</span></li>
+                <li><i class="fas fa-plane"></i> <span><strong>Access:</strong> Adjacent to airstrip for logistics (emergency parts delivery if needed)</span></li>
+                <li><i class="fas fa-arrow-up"></i> <span><strong>Elevation:</strong> Above typical flood zones for protection</span></li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Cost Analysis Section -->
+    <section id="cost">
+        <h2 class="section-title">Cost Analysis</h2>
+
+        <h3>Capital Investment Breakdown</h3>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Resource</th>
+                        <th>Quantity</th>
+                        <th>Cost per Unit</th>
+                        <th>Total Cost</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>6.6kW Solar Systems</td>
+                        <td>82</td>
+                        <td>$4,000</td>
+                        <td>$328,000</td>
+                    </tr>
+                    <tr>
+                        <td>Battery Storage (BESS)</td>
+                        <td>1</td>
+                        <td>$180,000</td>
+                        <td>$180,000</td>
+                    </tr>
+                    <tr>
+                        <td>Inverter</td>
+                        <td>1</td>
+                        <td>$44,000</td>
+                        <td>$44,000</td>
+                    </tr>
+                    <tr>
+                        <td>Transformer</td>
+                        <td>1</td>
+                        <td>$18,000</td>
+                        <td>$18,000</td>
+                    </tr>
+                    <tr>
+                        <td>Shipping (Sea Swift)</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>$65,000</td>
+                    </tr>
+                    <tr>
+                        <td>Installation & Labour</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>$300,000</td>
+                    </tr>
+                    <tr>
+                        <td><strong>TOTAL INVESTMENT</strong></td>
+                        <td></td>
+                        <td></td>
+                        <td><strong>$935,000 AUD</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3 class="mt-2">Operating Cost Comparison</h3>
+
+        <div class="grid grid-2">
+            <div class="card">
+                <h4>Diesel System (Current)</h4>
+                <ul>
+                    <li>Energy generation cost: <strong>30 cents/kWh</strong></li>
+                    <li>Annual energy consumption: ~730,000 kWh (2000 kWh/day × 365 days)</li>
+                    <li><strong>Annual diesel cost: ~$204,900</strong></li>
+                </ul>
+            </div>
+
+            <div class="card" style="border: 3px solid var(--secondary-green);">
+                <h4>Solar + Battery System (Proposed)</h4>
+                <ul>
+                    <li>Energy generation cost: <strong>4 cents/kWh</strong></li>
+                    <li>Annual energy consumption: ~730,000 kWh</li>
+                    <li><strong>Annual operating cost: ~$32,120</strong></li>
+                    <li>Maintenance: Minimal (panel cleaning, routine inspections)</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="chart-container">
+            <canvas id="costComparisonChart"></canvas>
+        </div>
+
+        <h3 class="mt-2">Financial Benefits</h3>
+
+        <div class="callout callout-success">
+            <h3>Annual Savings: $172,780</h3>
+            <ul class="icon-list">
+                <li><i class="fas fa-check-circle"></i> <span>Spending only $32,120 for $204,900 worth of power</span></li>
+                <li><i class="fas fa-check-circle"></i> <span><strong>26 cents saved per kWh</strong></span></li>
+                <li><i class="fas fa-check-circle"></i> <span><strong>87% cost reduction</strong></span></li>
+            </ul>
+        </div>
+
+        <div class="stat-grid">
+            <div class="stat-box">
+                <div class="stat-number">$935K</div>
+                <div class="stat-label">Total Investment</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">$172,780</div>
+                <div class="stat-label">Annual Savings</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">5.4</div>
+                <div class="stat-label">Years Payback Period</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">25-30</div>
+                <div class="stat-label">Years System Lifespan</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">$4M+</div>
+                <div class="stat-label">Lifetime Savings (25 years)</div>
+            </div>
+        </div>
+
+        <div class="callout callout-primary">
+            <h3>"Is the cost worth it? In short, YES!"</h3>
+            <h4>Long-term Value:</h4>
+            <ul>
+                <li>After 5.4 years, every year generates $172,780 in savings for TSIRC budget</li>
+                <li>Can be redirected to essential services (healthcare, education, infrastructure)</li>
+                <li>Eliminates fuel price volatility and supply chain vulnerability</li>
+                <li>Provides energy security for decades</li>
+            </ul>
+        </div>
+
+        <h3 class="mt-2">Potential Funding Sources</h3>
+
+        <div class="grid grid-3">
+            <div class="card">
+                <div class="feature-icon"><i class="fas fa-landmark"></i></div>
+                <p>Queensland Government renewable energy grants</p>
+            </div>
+            <div class="card">
+                <div class="feature-icon"><i class="fas fa-flag"></i></div>
+                <p>Federal government remote community infrastructure programs</p>
+            </div>
+            <div class="card">
+                <div class="feature-icon"><i class="fas fa-users"></i></div>
+                <p>Torres Strait Regional Authority funding</p>
+            </div>
+            <div class="card">
+                <div class="feature-icon"><i class="fas fa-wind"></i></div>
+                <p>Australian Renewable Energy Agency (ARENA) support</p>
+            </div>
+            <div class="card">
+                <div class="feature-icon"><i class="fas fa-hand-holding-usd"></i></div>
+                <p>Clean Energy Finance Corporation loans</p>
+            </div>
+            <div class="card">
+                <div class="feature-icon"><i class="fas fa-leaf"></i></div>
+                <p>Carbon offset programs</p>
+            </div>
+        </div>
+
+        <div class="chart-container">
+            <canvas id="roiChart"></canvas>
+        </div>
+    </section>
+
+    <!-- Scalability Section -->
+    <section id="scalability">
+        <h2 class="section-title">Scalability & Future Impact</h2>
+
+        <h3>Scalable Model for Torres Strait Region</h3>
+
+        <div class="callout callout-primary">
+            <h4>Success at Saibai Creates Pathway for:</h4>
+            <ul class="icon-list">
+                <li><i class="fas fa-island-tropical"></i> <span>Boigu Island</span></li>
+                <li><i class="fas fa-island-tropical"></i> <span>Poruma Island</span></li>
+                <li><i class="fas fa-island-tropical"></i> <span>Warraber Island</span></li>
+                <li><i class="fas fa-island-tropical"></i> <span>12+ other remote Torres Strait communities</span></li>
+            </ul>
+        </div>
+
+        <h3 class="mt-2">How It Works</h3>
+
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-number">1</div>
+                <div class="timeline-content">
+                    <h4>Proven Technology</h4>
+                    <p>Saibai demonstrates viability in Torres Strait conditions</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-number">2</div>
+                <div class="timeline-content">
+                    <h4>Trained Workforce</h4>
+                    <p>Local technicians can support neighboring islands</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-number">3</div>
+                <div class="timeline-content">
+                    <h4>Supply Chain Established</h4>
+                    <p>Sea Swift logistics proven for solar equipment</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-number">4</div>
+                <div class="timeline-content">
+                    <h4>Cost Model Validated</h4>
+                    <p>TSIRC and other councils can confidently invest</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-number">5</div>
+                <div class="timeline-content">
+                    <h4>Community Buy-In</h4>
+                    <p>Other communities see tangible benefits</p>
+                </div>
+            </div>
+        </div>
+
+        <h3 class="mt-2">Regional Impact</h3>
+
+        <div class="stat-grid">
+            <div class="stat-box">
+                <div class="stat-number">$2M+</div>
+                <div class="stat-label">Collective Annual Savings Across Torres Strait</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">1000s</div>
+                <div class="stat-label">Tonnes CO₂ Eliminated</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">15+</div>
+                <div class="stat-label">Communities Achieving Energy Independence</div>
+            </div>
+        </div>
+
+        <h3 class="mt-2">Adaptability</h3>
+
+        <div class="grid grid-2">
+            <div class="card">
+                <h4>Other Communities Can:</h4>
+                <ul>
+                    <li>Adjust system size based on their population (more or fewer solar arrays)</li>
+                    <li>Modify design for local site conditions</li>
+                    <li>Incorporate local materials where feasible</li>
+                    <li>Tweak implementation approach to suit cultural context</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h4>Knowledge Transfer:</h4>
+                <ul>
+                    <li>Trained Saibai residents share expertise with neighboring islands</li>
+                    <li>Success stories build momentum for renewable transition</li>
+                    <li>Regional network of solar technicians emerges</li>
+                    <li>Torres Strait becomes leader in remote renewable energy</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Conclusion Section -->
+    <section id="conclusion">
+        <h2 class="section-title">Conclusion</h2>
+
+        <h3>The Problem We Are Solving</h3>
+
+        <div class="grid grid-3">
+            <div class="card">
+                <div class="card-icon">💰</div>
+                <h4>Economical Burdens</h4>
+                <ul>
+                    <li>Lowering burden of high-cost imported diesel ($3.70/L)</li>
+                    <li>Relaxing council budget spending on energy infrastructure</li>
+                    <li>TSIRC already operating at $60M deficit annually</li>
+                    <li>Current system hemorrhaging money</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">🌏</div>
+                <h4>Environmental Threats</h4>
+                <ul>
+                    <li>Lowering carbon footprint (currently 500 tonnes CO₂/year)</li>
+                    <li>Health hazards: constant diesel fumes and noise affecting residents' quality of life</li>
+                    <li>Fossil fuel dependency contradicts Torres Strait Islander environmental values</li>
+                    <li>Island facing existential climate change threat</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">⚠️</div>
+                <h4>Current System's Unreliability</h4>
+                <ul>
+                    <li>Frequent breakdowns and power cuts</li>
+                    <li>Vulnerable to external factors (shipping delays, weather, monsoons)</li>
+                    <li>No local repair capacity</li>
+                    <li>Supply chain fragility endangers community wellbeing</li>
+                </ul>
+            </div>
+        </div>
+
+        <h3 class="mt-2">Our Solution: The Centralised Energy Grid</h3>
+
+        <div class="callout callout-success">
+            <p class="bold" style="font-size: 1.2rem;">A Centralised Solar Power Grid with Battery Energy Storage System (BESS) designed to meet Saibai Island's energy needs:</p>
+            <ul class="icon-list">
+                <li><i class="fas fa-check-circle"></i> <span><strong>400kW capacity</strong> (82 x 6.6kW systems)</span></li>
+                <li><i class="fas fa-check-circle"></i> <span><strong>2200kWh daily generation</strong> for 77 households (340 residents)</span></li>
+                <li><i class="fas fa-check-circle"></i> <span><strong>500kWh+ battery storage</strong> for 24/7 power</span></li>
+            </ul>
+        </div>
+
+        <h4>Key Features:</h4>
+        <ol style="font-size: 1.1rem; line-height: 2;">
+            <li><strong>High-Efficiency Technology:</strong> Monocrystalline solar panels and containerized BESS</li>
+            <li><strong>Resilience:</strong> Infrastructure withstands cyclones, salt spray, and extreme weather</li>
+            <li><strong>Seamless Integration:</strong> Direct connection to existing 3-phase grid—diesel becomes backup only</li>
+        </ol>
+
+        <h3 class="mt-2">Key Takeaways</h3>
+
+        <div class="grid grid-2">
+            <div class="card">
+                <div class="card-icon"><i class="fas fa-dollar-sign"></i></div>
+                <h4>Significant Financial Savings</h4>
+                <ul>
+                    <li>Annual savings: <strong>$172,780</strong> (87% cost reduction)</li>
+                    <li>Operating cost: 4 cents/kWh vs. 30 cents/kWh diesel</li>
+                    <li>ROI: 5.4 years</li>
+                    <li>Lifetime savings: $4+ million over 25 years</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <div class="card-icon"><i class="fas fa-leaf"></i></div>
+                <h4>Environmental Responsibility</h4>
+                <ul>
+                    <li>Eliminates <strong>500 tonnes annual CO₂ emissions</strong></li>
+                    <li>Zero local air and noise pollution</li>
+                    <li>Aligns with community values as environmental custodians</li>
+                    <li>Demonstrates climate leadership for vulnerable island nations worldwide</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <div class="card-icon"><i class="fas fa-users"></i></div>
+                <h4>Community Empowerment</h4>
+                <ul>
+                    <li>Creates local jobs (technician training and employment)</li>
+                    <li>Builds community capacity for self-sufficient energy management</li>
+                    <li>Reduces dependence on external supply chains</li>
+                    <li>Establishes community ownership of critical infrastructure</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <div class="card-icon"><i class="fas fa-chart-line"></i></div>
+                <h4>Scalable Infrastructure</h4>
+                <ul>
+                    <li>Proven model for 15+ other Torres Strait islands</li>
+                    <li>Regional renewable energy transition pathway</li>
+                    <li>Knowledge transfer from Saibai technicians to neighboring communities</li>
+                    <li>Torres Strait becomes renewable energy leader</li>
+                </ul>
+            </div>
+        </div>
+
+        <h3 class="mt-2">Key Stakeholders</h3>
+
+        <div class="grid grid-3">
+            <div class="card">
+                <div class="feature-icon"><i class="fas fa-landmark"></i></div>
+                <h4>Torres Strait Island Regional Council (TSIRC)</h4>
+                <p><strong>Our Client</strong></p>
+                <ul>
+                    <li>Local government managing 15 island communities</li>
+                    <li>Budget constraints ($60M deficit) demand cost-effective solutions</li>
+                    <li>Responsible for energy infrastructure across region</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <div class="feature-icon"><i class="fas fa-users"></i></div>
+                <h4>Saibai Island Residents</h4>
+                <p><strong>The Community</strong></p>
+                <ul>
+                    <li>340 people in 77 households directly benefiting</li>
+                    <li>Traditional Owners and custodians of the land</li>
+                    <li>Essential partners in design and implementation</li>
+                    <li>Primary beneficiaries of improved energy security</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <div class="feature-icon"><i class="fas fa-flag"></i></div>
+                <h4>Queensland Government</h4>
+                <p><strong>Funding & Support</strong></p>
+                <ul>
+                    <li>Potential grant funding for renewable infrastructure</li>
+                    <li>Regulatory approval for Planning Scheme amendment</li>
+                    <li>Broader Torres Strait development strategy</li>
+                    <li>Climate adaptation and Indigenous community support</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="callout callout-primary">
+            <h3>Final Statement</h3>
+            <p style="font-size: 1.1rem; line-height: 1.8;">The NRG Energy Solution represents more than infrastructure—it's a pathway to energy sovereignty for Saibai Island. By replacing diesel dependency with renewable generation, we're not just saving money or reducing emissions. We're empowering a community to take control of their energy future, demonstrating climate resilience in the face of existential threats, and establishing a model that can transform the entire Torres Strait region.</p>
+
+            <p style="font-size: 1.1rem; line-height: 1.8;">At $935,000, this investment will pay for itself in 5.4 years and deliver over $4 million in savings over its lifespan. More importantly, it provides Saibai Island with reliable, clean, locally-managed power that respects their cultural values and protects the homeland their ancestors have cared for across countless generations.</p>
+
+            <p class="bold" style="font-size: 1.25rem; text-align: center; margin-top: 2rem;">This is the future of remote community energy—and Saibai Island can lead the way.</p>
+        </div>
+    </section>
+
+    <!-- References Section -->
+    <section id="references" class="references">
+        <h2 class="section-title">References</h2>
+
+        <div class="reference-list">
+            <p class="reference-item">1KOMMA5°. (2025). <em>How Your Electric Bill Changes After Using Solar Panels</em>. https://1komma5.com/au/solar/what-does-solar-power-actually-cost/</p>
+
+            <p class="reference-item">Alibaba. (2023). <em>500KW 1000KW 1mwh 2mwh 3mwh 5mwh 6mwh 7mwh 8mwh Solar Energy Storage Battery Container System</em>. https://www.alibaba.com/product-detail/500KW-1000KW-1mwh-2mwh-3mwh5mwh_1600964505366.html</p>
+
+            <p class="reference-item">Archibald-Binge, E. (2018). 'Our people were a dying race': Celebrating the survival of the crocodile clan [Image]. <em>SBS</em>. https://www.sbs.com.au/nitv/the-point/article/our-people-were-a-dying-race-celebrating-the-survival-of-thecrocodile-clan/r3nhyqoj0</p>
+
+            <p class="reference-item">Australian Bureau of Statistics. (2021). <em>Saibai Island Census All persons QuickStats</em>. https://www.abs.gov.au/census/find-census-data/quickstats/2021/SAL32503</p>
+
+            <p class="reference-item">Australian Bureau of Statistics. (2022). <em>Saibai Island</em>. https://abs.gov.au/census/find-censusdata/quickstats/2021/ILOC30700203</p>
+
+            <p class="reference-item">Cox, L. (2023). 'It's not viable any more': global heating sparks first climate class action by Indigenous Australians. <em>The Guardian</em>. https://www.theguardian.com/environment/2023/nov/12/its-not-viable-any-more-global-heatingsparks-first-climate-class-action-by-indigenous-australians</p>
+
+            <p class="reference-item">Department of Climate Change, Energy, the Environment and Water. (2024). <em>Size your solar system | energy.gov.au</em>. https://www.energy.gov.au/solar/solar-system-design/size-your-solarsystem</p>
+
+            <p class="reference-item">Edwards, T., & Mercer, D. (2021). Onslow is a town with seemingly unlimited solar energy, but it's grappling with power supplies [Image]. <em>ABC News</em>. https://www.abc.net.au/news/rural/2021-08-26/onslow-blueprint-for-electricity-grids-acrossaustralia/100327784</p>
+
+            <p class="reference-item">Engineers Without Borders Australia. (2024). <em>EWB Challenge | Interactives : 360° Site Walkthroughs</em>. https://ewbchallenge.org/challenge/saibai-island-tsirc/interactives-360-site-walkthroughs/</p>
+
+            <p class="reference-item">Engineers Without Borders Australia. (2025a). <em>EWB Challenge Brief - Saibai Island S2 2025</em>.</p>
+
+            <p class="reference-item">Engineers Without Borders Australia. (2025b). <em>Transportation Price</em>. https://ewbchallenge.org/forums/topic/transportaion-price/</p>
+
+            <p class="reference-item">Ergon Energy. (2023). <em>Energy usage data to share</em>. https://www.ergon.com.au/network/our-network/network-data/energy-usage-data-to-share</p>
+
+            <p class="reference-item">Made-in-China. (2025). <em>Three Phase 200kw 300kw 400kw Hybrid Solar Inverter off Grid System</em>. https://demingpower.en.madein-china.com/product/VOWtAoZbMFRc/China-Three-Phase-200kw-300kw-400kw-Hybrid-Solar-Inverter-off-GridSystem.html</p>
+
+            <p class="reference-item">Murty, V. V., & Kumar, A. (2020). Multi-objective energy management in microgrids with hybrid energy sources and battery energy storage systems. <em>Protection and Control of Modern Power Systems</em>, <em>5</em>(1). https://doi.org/10.1186/s41601-019-0147-z</p>
+
+            <p class="reference-item">Regen Power. (2025). <em>Why 6.6kW Solar system is More Popular In Australia?</em> https://regenpower.com/why-6-6kw-solar-system-is-more-popularaustralia/</p>
+
+            <p class="reference-item">Sea Swift. (2025). <em>General Cargo</em>. https://www.seaswift.com.au/services/general-cargo/</p>
+
+            <p class="reference-item">Solar Choice. (n.d.). <em>Solar power Saibai Island, QLD 4875: Compare prices & installers</em>. https://www.solarchoice.net.au/blog/locations/solar-power-qld/saibai-island-4875/</p>
+
+            <p class="reference-item">Torres Strait Island Regional Council. (2021). <em>Saibai Island Master Plan</em>. https://tsirc.qld.gov.au/wp-content/uploads/2024/12/Saibai-Island-Master-Plan.pdf</p>
+
+            <p class="reference-item">Torres Strait Island Regional Council. (2024). <em>2024/25 Budget Review Snapshot</em>. https://tsirc.qld.gov.au/wp-content/uploads/2025/04/2024-25-Budget-Review-small.pdf</p>
+
+            <p class="reference-item">Torres Strait Island Regional Council. (2025). <em>Saibai | Torres Strait Island Regional Council</em>. https://tsirc.qld.gov.au/communities/saibai/</p>
+
+            <p class="reference-item">Torres Strait Regional Authority. (2021). <em>Torres Strait Renewable Energy Transition Plan 2021</em>. https://www.tsra.gov.au/wp-content/uploads/2025/03/Torres-Strait-Renewable-Energy-Transition-Plan2021.pdf</p>
+
+            <p class="reference-item">Vel-Sehiemy, R. A., Tostado-Véliz, M., Arévalo, P., Kamel, S., & Senjyu, T. (2023). <em>Renewable-Based Microgrids: Design, Control and Optimization</em>. MDPI. https://doi.org/10.3390/books978-3-0365-8577-2</p>
+
+            <p class="reference-item">Wikipedia. (2025). Queensland Government [Image]. https://en.wikipedia.org/wiki/Queensland_Government</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-green) 100%); color: white; padding: 3rem 2rem; text-align: center;">
+        <h3 style="color: white; font-size: 1.5rem; margin-bottom: 1rem;">NRG Energy Solution</h3>
+        <p style="font-size: 1rem; margin-bottom: 0.5rem;">Yusuf Bharoocha, Nicholas Limpiado, Jinchul Park, Saumya Pindoriya, Sean Woods</p>
+        <p style="margin-top: 1.5rem; opacity: 0.9; font-size: 0.95rem;">Designed for Torres Strait Island Regional Council | Engineers Without Borders Challenge 2025</p>
+        <p style="margin-top: 1rem; opacity: 0.8; font-size: 0.9rem;">&copy; 2025 NRG Energy Solution. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // ===== NAVIGATION & SCROLL EFFECTS =====
+
+        // Mobile menu toggle
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const navMenu = document.getElementById('navMenu');
+
+        mobileMenuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            const icon = mobileMenuToggle.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                const icon = mobileMenuToggle.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            });
+        });
+
+        // Scroll progress bar
+        window.addEventListener('scroll', () => {
+            const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (window.scrollY / windowHeight) * 100;
+            document.getElementById('scrollProgress').style.width = scrolled + '%';
+        });
+
+        // Back to top button
+        const backToTop = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // ===== CHARTS =====
+
+        // Current Energy Source Chart (Pie)
+        const currentEnergyCtx = document.getElementById('currentEnergyChart').getContext('2d');
+        new Chart(currentEnergyCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Diesel Generation', 'Solar'],
+                datasets: [{
+                    data: [95, 5],
+                    backgroundColor: ['#dc2626', '#2D8659'],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            font: {
+                                size: 14
+                            }
+                        }
+                    },
+                    title: {
+                        display: true,
+                        text: 'Current Energy Sources (Saibai Island)',
+                        font: {
+                            size: 18,
+                            weight: 'bold'
+                        }
+                    }
+                }
+            }
+        });
+
+        // Budget Breakdown Chart (Pie)
+        const budgetCtx = document.getElementById('budgetChart').getContext('2d');
+        new Chart(budgetCtx, {
+            type: 'pie',
+            data: {
+                labels: ['Materials & Services (33.66%)', 'Depreciation (41.41%)', 'Employee Benefits (24.42%)', 'Finance Costs (0.50%)'],
+                datasets: [{
+                    data: [33.66, 41.41, 24.42, 0.50],
+                    backgroundColor: ['#0A4B78', '#2D8659', '#00A8A8', '#6B7280'],
+                    borderWidth: 2,
+                    borderColor: '#fff'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            font: {
+                                size: 12
+                            }
+                        }
+                    },
+                    title: {
+                        display: true,
+                        text: 'TSIRC Expense Breakdown',
+                        font: {
+                            size: 18,
+                            weight: 'bold'
+                        }
+                    }
+                }
+            }
+        });
+
+        // Centralised vs Individual Cost Comparison (Bar)
+        const comparisonCtx = document.getElementById('comparisonChart').getContext('2d');
+        new Chart(comparisonCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Centralised System', 'Individual Systems (77)'],
+                datasets: [{
+                    label: 'Total Cost (AUD)',
+                    data: [935000, 2350000],
+                    backgroundColor: ['#2D8659', '#dc2626'],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    title: {
+                        display: true,
+                        text: 'Centralised vs Individual Systems: Cost Comparison',
+                        font: {
+                            size: 18,
+                            weight: 'bold'
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            callback: function(value) {
+                                return '$' + value.toLocaleString();
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Operating Cost Comparison (Bar)
+        const costComparisonCtx = document.getElementById('costComparisonChart').getContext('2d');
+        new Chart(costComparisonCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Diesel System (Current)', 'Solar + Battery (Proposed)'],
+                datasets: [{
+                    label: 'Annual Operating Cost (AUD)',
+                    data: [204900, 32120],
+                    backgroundColor: ['#dc2626', '#2D8659'],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    title: {
+                        display: true,
+                        text: 'Annual Operating Cost Comparison',
+                        font: {
+                            size: 18,
+                            weight: 'bold'
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            callback: function(value) {
+                                return '$' + value.toLocaleString();
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // ROI Timeline Chart (Line)
+        const roiCtx = document.getElementById('roiChart').getContext('2d');
+        const years = Array.from({length: 26}, (_, i) => i);
+        const cumulativeSavings = years.map(year => year * 172780 - 935000);
+
+        new Chart(roiCtx, {
+            type: 'line',
+            data: {
+                labels: years,
+                datasets: [{
+                    label: 'Cumulative Savings (AUD)',
+                    data: cumulativeSavings,
+                    borderColor: '#2D8659',
+                    backgroundColor: 'rgba(45, 134, 89, 0.1)',
+                    tension: 0.3,
+                    fill: true,
+                    pointRadius: 0,
+                    pointHoverRadius: 5
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'bottom'
+                    },
+                    title: {
+                        display: true,
+                        text: 'Return on Investment Over 25 Years',
+                        font: {
+                            size: 18,
+                            weight: 'bold'
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Years'
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Cumulative Savings (AUD)'
+                        },
+                        ticks: {
+                            callback: function(value) {
+                                return '$' + (value / 1000000).toFixed(1) + 'M';
+                            }
+                        }
+                    }
+                },
+                interaction: {
+                    intersect: false,
+                    mode: 'index'
+                }
+            }
+        });
+
+        // ===== ANIMATION ON SCROLL =====
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in-up');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.card, .callout, .problem-box, .stat-box, .timeline-item').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
