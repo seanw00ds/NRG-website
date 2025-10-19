@@ -42,6 +42,8 @@
         html {
             scroll-behavior: smooth;
             font-size: 16px;
+            overflow-x: hidden;
+            max-width: 100%;
         }
 
         body {
@@ -49,6 +51,8 @@
             color: var(--text-dark);
             line-height: 1.6;
             background-color: var(--background-white);
+            overflow-x: hidden;
+            max-width: 100vw;
         }
 
         /* ===== TYPOGRAPHY ===== */
@@ -188,6 +192,9 @@
             padding: 5rem 2rem;
             max-width: 1400px;
             margin: 0 auto;
+            overflow-x: hidden;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         section:nth-child(even) {
@@ -329,18 +336,21 @@
             display: grid;
             gap: 2rem;
             margin: 2rem 0;
+            width: 100%;
+            max-width: 100%;
+            box-sizing: border-box;
         }
 
         .grid-2 {
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
         }
 
         .grid-3 {
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
         }
 
         .grid-4 {
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
         }
 
         /* ===== CARDS ===== */
@@ -351,6 +361,9 @@
             box-shadow: var(--shadow);
             transition: transform 0.3s, box-shadow 0.3s;
             height: 100%;
+            width: 100%;
+            max-width: 100%;
+            box-sizing: border-box;
         }
 
         .card:hover {
@@ -398,9 +411,12 @@
         /* ===== STATISTICS ===== */
         .stat-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
             gap: 2rem;
             margin: 2rem 0;
+            width: 100%;
+            max-width: 100%;
+            box-sizing: border-box;
         }
 
         .stat-box {
@@ -462,12 +478,16 @@
             margin: 2rem 0;
             border-radius: 12px;
             box-shadow: var(--shadow);
+            width: 100%;
+            max-width: 100%;
+            -webkit-overflow-scrolling: touch;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
             background: white;
+            min-width: 100%;
         }
 
         thead {
@@ -499,9 +519,12 @@
         /* ===== COMPARISON TABLE ===== */
         .comparison-table {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
             gap: 1.5rem;
             margin: 2rem 0;
+            width: 100%;
+            max-width: 100%;
+            box-sizing: border-box;
         }
 
         .comparison-item {
@@ -648,6 +671,9 @@
             border-bottom: 1px solid var(--border-color);
             text-indent: -2rem;
             padding-left: 2rem;
+            overflow-wrap: break-word;
+            word-wrap: break-word;
+            hyphens: auto;
         }
 
         .reference-item:last-child {
@@ -657,6 +683,7 @@
         .reference-item a {
             color: var(--accent-teal);
             word-break: break-all;
+            overflow-wrap: break-word;
         }
 
         /* ===== HIGHLIGHT TEXT ===== */
@@ -669,6 +696,12 @@
 
         /* ===== RESPONSIVE DESIGN ===== */
         @media (max-width: 768px) {
+            html, body {
+                overflow-x: hidden;
+                max-width: 100vw;
+                width: 100%;
+            }
+
             .nav-menu {
                 display: none;
                 flex-direction: column;
@@ -694,27 +727,77 @@
 
             section {
                 padding: 3rem 1rem;
+                width: 100%;
+                max-width: 100vw;
+                overflow-x: hidden;
             }
 
             .hero {
                 padding: 3rem 1rem;
+                width: 100%;
+                max-width: 100vw;
             }
 
             .grid-2, .grid-3, .grid-4 {
                 grid-template-columns: 1fr;
+                width: 100%;
             }
 
             .stat-grid {
                 grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
             }
 
             .chart-container {
                 height: 300px;
                 padding: 1rem;
+                width: 100%;
+                max-width: 100%;
             }
 
             .quick-facts {
                 padding: 1.5rem;
+                width: 100%;
+                max-width: 100%;
+            }
+
+            .callout, .card, .problem-box {
+                width: 100%;
+                max-width: 100%;
+                box-sizing: border-box;
+            }
+
+            .cost-summary {
+                padding: 1.5rem;
+                width: 100%;
+                max-width: 100%;
+            }
+
+            .reference-list {
+                width: 100%;
+                padding: 0 1rem;
+                box-sizing: border-box;
+            }
+
+            .reference-item {
+                padding-left: 1rem;
+                text-indent: -1rem;
+            }
+
+            table {
+                font-size: 0.85rem;
+            }
+
+            th, td {
+                padding: 0.5rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.75rem;
             }
         }
 
